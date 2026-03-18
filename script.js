@@ -14,7 +14,7 @@ let soal = [
         tanya: "Soal 5: Berapa nilai sidang gwe",
         type: "select",
         pilihan: ["A+","A","A-","B+","B","B-","C"],
-        jawab: ["d"] // GANTI sesuai jawaban kamu
+        jawab: ["B+"] // GANTI sesuai jawaban kamu
     },
 
     { tanya: "Soal 6: Mbah sum dari kota manee", type: "select", pilihan: ["Sidoardo","Pati Semarang","Salatiga","Keraton jogya","Klaten","Magelang"], jawab: ["salatiga"] },
