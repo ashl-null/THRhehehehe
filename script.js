@@ -16,13 +16,16 @@ let soal = [
 ];
 
 function updateProgress() {
-    let persen = (index / soal.length) * 100;
-    document.getElementById("progress-bar").style.width = persen + "%";
+    document.getElementById("progress-bar").style.width =
+        (index / soal.length * 100) + "%";
 }
 
 function tampilSoal() {
     let s = soal[index];
 
+    let warnaClass = "warna" + (index + 1);
+
+    document.getElementById("soal").className = "bubble " + warnaClass;
     document.getElementById("soal").innerHTML = s.tanya;
 
     document.getElementById("progress-text").innerHTML =
@@ -51,7 +54,7 @@ function nextSoal() {
     let input = document.getElementById("input").value.toLowerCase().trim();
 
     if (input === "") {
-        alert("Jawab dulu ya 😁");
+        alert("Jawab dulu 😁");
         return;
     }
 
@@ -80,42 +83,33 @@ function tampilHasil() {
     document.getElementById("progress-bar").style.width = "100%";
 
     let hasilHTML = `<h3>🎉 Selesai!</h3>`;
-    hasilHTML += `<p>Skor: <b>${skor}/${soal.length}</b></p><br>`;
+    hasilHTML += `<p>Skor: ${skor}/${soal.length}</p><br>`;
 
-    // 😈 EJEKAN
     if (skor === soal.length) {
-        hasilHTML += `<p>🔥 Aowkaoakowka hebat kamu bang 😎</p>`;
+        hasilHTML += `🔥 Aowkaoakowka hebat kamu bang 😎`;
     } else if (skor > 7) {
-        hasilHTML += `<p>:v nyaris, dikit lagi 😏</p>`;
+        hasilHTML += `:v nyaris, dikit lagi 😏`;
     } else if (skor > 4) {
-        hasilHTML += `<p>😂 Aowkaokwka lolok</p>`;
+        hasilHTML += `😂 Aowkaokwka lolok`;
     } else {
-        hasilHTML += `<p>💀 Loloookkkkkkkk 😭😭😭😭😭</p>`;
+        hasilHTML += `💀 Loloookkkkkkkk 😭😭😭`;
     }
 
     hasilHTML += `<hr><h4>❌ Jawaban kamu yang salah:</h4>`;
 
-    let adaSalah = false;
-
     for (let i = 0; i < soal.length; i++) {
         if (hasilDetail[i] === "SALAH") {
-            adaSalah = true;
-
             hasilHTML += `
-                <div style="text-align:left; margin-bottom:10px; background:white; padding:10px; border-radius:10px;">
+                <div class="hasil-card">
                     <b>${soal[i].tanya}</b><br>
-                    Jawaban kamu: ❌ ${jawabanUser[i]}
+                    ❌ ${jawabanUser[i]}
                 </div>
             `;
         }
     }
 
-    if (!adaSalah) {
-        hasilHTML += `<p>🎯 Tidak ada yang salah, perfect!</p>`;
-    }
-
     if (skor === soal.length) {
-        hasilHTML += `<br><br>🎁 <a href="https://google.com" target="_blank">Klik Hadiah</a>`;
+        hasilHTML += `<br><br>🎁 <a href="https://google.com">Klik Hadiah</a>`;
     }
 
     document.getElementById("hasil").innerHTML = hasilHTML;

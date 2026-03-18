@@ -19,7 +19,6 @@ h1 {
 #progress-text {
     text-align: center;
     color: white;
-    font-size: 14px;
 }
 
 /* PROGRESS */
@@ -48,21 +47,31 @@ h1 {
 
 /* BUBBLE */
 .bubble {
-    background: #ffe082;
     padding: 14px;
     border-radius: 15px;
     margin-bottom: 10px;
     font-size: 14px;
     animation: fadeIn 0.4s;
+    color: #333;
 }
 
-/* INPUT WRAPPER */
+/* WARNA BERBEDA TIAP SOAL */
+.warna1 { background: #ffe082; }
+.warna2 { background: #ffab91; }
+.warna3 { background: #b39ddb; }
+.warna4 { background: #80cbc4; }
+.warna5 { background: #ffcc80; }
+.warna6 { background: #f48fb1; }
+.warna7 { background: #a5d6a7; }
+.warna8 { background: #90caf9; }
+.warna9 { background: #ce93d8; }
+
+/* INPUT */
 #jawaban {
     display: flex;
     justify-content: center;
 }
 
-/* INPUT */
 input, select {
     width: 90%;
     max-width: 300px;
@@ -70,8 +79,6 @@ input, select {
     margin-top: 10px;
     border-radius: 12px;
     border: 2px solid #ddd;
-    outline: none;
-    animation: slideUp 0.3s;
 }
 
 input:focus, select:focus {
@@ -89,19 +96,17 @@ button {
     margin-top: 15px;
 }
 
-/* HASIL */
-h2 {
-    text-align: center;
-    color: white;
+/* HASIL CARD */
+.hasil-card {
+    background: white;
+    padding: 12px;
+    border-radius: 15px;
+    margin-bottom: 12px;
+    text-align: left;
 }
 
 /* ANIMASI */
 @keyframes fadeIn {
     from {opacity:0; transform:translateY(10px);}
-    to {opacity:1; transform:translateY(0);}
-}
-
-@keyframes slideUp {
-    from {opacity:0; transform:translateY(20px);}
     to {opacity:1; transform:translateY(0);}
 }
