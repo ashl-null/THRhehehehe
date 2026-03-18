@@ -1,0 +1,106 @@
+body {
+    font-family: Arial;
+    margin: 0;
+    background: linear-gradient(to bottom, #89f7fe, #66a6ff);
+}
+
+/* CONTAINER */
+.container {
+    max-width: 400px;
+    margin: auto;
+    padding: 15px;
+}
+
+/* TITLE */
+h1 {
+    text-align: center;
+    font-size: 20px;
+    color: white;
+}
+
+/* PROGRESS */
+.progress-container {
+    width: 100%;
+    background: #ddd;
+    border-radius: 10px;
+    margin: 10px 0;
+}
+
+#progress-bar {
+    height: 10px;
+    width: 0%;
+    background: #4caf50;
+    border-radius: 10px;
+    transition: width 0.3s ease;
+}
+
+/* CHAT BOX */
+.chat-box {
+    background: white;
+    border-radius: 20px;
+    padding: 15px;
+    min-height: 250px;
+}
+
+/* BUBBLE */
+.bubble {
+    background: #ffe082;
+    padding: 12px;
+    border-radius: 15px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    animation: fadeIn 0.4s ease;
+}
+
+/* INPUT */
+input, select {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    border-radius: 12px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    animation: slideUp 0.3s ease;
+}
+
+/* BUTTON */
+button {
+    width: 100%;
+    padding: 15px;
+    background: #ff4081;
+    color: white;
+    border: none;
+    border-radius: 15px;
+    margin-top: 10px;
+    font-size: 16px;
+}
+
+/* HASIL */
+h2 {
+    text-align: center;
+    color: white;
+    font-size: 16px;
+}
+
+/* ANIMASI */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
