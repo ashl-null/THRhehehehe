@@ -32,9 +32,10 @@ h1 {
     width: 0%;
     background: #4caf50;
     border-radius: 10px;
+    transition: 0.3s;
 }
 
-/* CHAT */
+/* CHAT BOX */
 .chat-box {
     background: white;
     border-radius: 20px;
@@ -49,7 +50,7 @@ h1 {
     color: #333;
 }
 
-/* WARNA */
+/* WARNA SOAL */
 .warna1 { background: #ffe082; }
 .warna2 { background: #ffab91; }
 .warna3 { background: #b39ddb; }
@@ -60,19 +61,31 @@ h1 {
 .warna8 { background: #90caf9; }
 .warna9 { background: #ce93d8; }
 
-/* OPSI BUTTON */
+/* OPSI */
 .opsi-container {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 10px;
 }
 
 .opsi-btn {
-    padding: 12px;
-    border-radius: 12px;
+    padding: 14px;
+    border-radius: 14px;
     border: none;
     background: #f5f5f5;
+    color: #333; /* 🔥 FIX UTAMA */
+    font-size: 15px;
+    font-weight: bold;
     cursor: pointer;
+    transition: 0.2s;
+}
+
+.opsi-btn:hover {
+    background: #e0e0e0;
+}
+
+.opsi-btn:active {
+    transform: scale(0.96);
 }
 
 .opsi-btn.aktif {
@@ -98,6 +111,7 @@ button {
     border: none;
     border-radius: 15px;
     margin-top: 15px;
+    font-size: 16px;
 }
 
 /* HASIL */
@@ -106,4 +120,5 @@ button {
     padding: 12px;
     border-radius: 15px;
     margin-bottom: 10px;
+    text-align: left;
 }
