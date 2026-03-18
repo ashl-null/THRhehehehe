@@ -2,6 +2,7 @@ let index = 0;
 let skor = 0;
 let hasilDetail = [];
 let jawabanUser = [];
+let jawabanDipilih = "";
 
 let soal = [
     { tanya: "Soal 1: Siapa nama panjang gwe", type: "text", jawab: ["muhammad annash ash shidiq"] },
@@ -9,12 +10,11 @@ let soal = [
     { tanya: "Soal 3: Bapak jamal mempunyai 5 orang anak, namanya jokowa, jokowe, jokowu, jokowo, siapa nama anak terakhir", type: "text", jawab: ["jamal"] },
     { tanya: "Soal 4: Ponakan gwe yang ke 6 (nama panggilan aja derr)", type: "text", jawab: ["shanum","sanum"] },
 
-    // 🔥 SOAL 5 BARU
     {
         tanya: "Soal 5: Berapa nilai sidang gwe",
         type: "select",
         pilihan: ["A+","A","A-","B+","B","B-","C"],
-        jawab: ["b+"] // GANTI sesuai jawaban kamu
+        jawab: ["b+"]
     },
 
     { tanya: "Soal 6: Mbah sum dari kota manee", type: "select", pilihan: ["Sidoardo","Pati Semarang","Salatiga","Keraton jogya","Klaten","Magelang"], jawab: ["salatiga"] },
@@ -31,9 +31,7 @@ function updateProgress() {
 function tampilSoal() {
     let s = soal[index];
 
-    let warnaClass = "warna" + (index + 1);
-
-    document.getElementById("soal").className = "bubble " + warnaClass;
+    document.getElementById("soal").className = "bubble warna" + (index + 1);
     document.getElementById("soal").innerHTML = s.tanya;
 
     document.getElementById("progress-text").innerHTML =
@@ -43,25 +41,39 @@ function tampilSoal() {
         document.getElementById("jawaban").innerHTML =
             `<input type="text" id="input" placeholder="Ketik jawaban...">`;
     } else {
-        let opsi = s.pilihan.map(p =>
-            `<option value="${p.toLowerCase()}">${p}</option>`
-        ).join("");
+        let opsi = s.pilihan.map(p => `
+            <button class="opsi-btn" onclick="pilihJawaban('${p.toLowerCase()}', this)">
+                ${p}
+            </button>
+        `).join("");
 
         document.getElementById("jawaban").innerHTML =
-            `<select id="input">${opsi}</select>`;
+            `<div class="opsi-container">${opsi}</div>`;
     }
 
+    jawabanDipilih = "";
     updateProgress();
+}
 
-    setTimeout(() => {
-        document.getElementById("input").focus();
-    }, 100);
+function pilihJawaban(value, el) {
+    jawabanDipilih = value;
+
+    document.querySelectorAll(".opsi-btn")
+        .forEach(btn => btn.classList.remove("aktif"));
+
+    el.classList.add("aktif");
 }
 
 function nextSoal() {
-    let input = document.getElementById("input").value.toLowerCase().trim();
+    let input;
 
-    if (input === "") {
+    if (soal[index].type === "text") {
+        input = document.getElementById("input").value.toLowerCase().trim();
+    } else {
+        input = jawabanDipilih;
+    }
+
+    if (!input) {
         alert("Jawab dulu 😁");
         return;
     }
@@ -70,12 +82,8 @@ function nextSoal() {
 
     let benar = soal[index].jawab.includes(input);
 
-    if (benar) {
-        skor++;
-        hasilDetail.push("BENAR");
-    } else {
-        hasilDetail.push("SALAH");
-    }
+    hasilDetail.push(benar ? "BENAR" : "SALAH");
+    if (benar) skor++;
 
     index++;
 
@@ -90,42 +98,30 @@ function tampilHasil() {
     document.querySelector(".chat-box").style.display = "none";
     document.getElementById("progress-bar").style.width = "100%";
 
-    let hasilHTML = `<h3>🎉 Selesai!</h3>`;
-    hasilHTML += `<p>Skor: ${skor}/${soal.length}</p><br>`;
+    let html = `<h3>🎉 Selesai!</h3><p>Skor: ${skor}/${soal.length}</p>`;
 
-    if (skor === soal.length) {
-        hasilHTML += `🔥 Aowkaoakowka hebat kamu bang 😎`;
-    } else if (skor > 7) {
-        hasilHTML += `:v nyaris, dikit lagi 😏`;
-    } else if (skor > 4) {
-        hasilHTML += `😂 Aowkaokwka lolok`;
-    } else {
-        hasilHTML += `💀 Loloookkkkkkkk 😭😭😭`;
-    }
+    if (skor === soal.length) html += `🔥 Aowkaoakowka hebat kamu bang 😎`;
+    else if (skor > 7) html += `:v nyaris, dikit lagi 😏`;
+    else if (skor > 4) html += `😂 Aowkaokwka lolok`;
+    else html += `💀 Loloookkkkkkkk 😭`;
 
-    hasilHTML += `<hr><h4>❌ Jawaban kamu yang salah:</h4>`;
+    html += `<hr><h4>❌ Jawaban salah:</h4>`;
 
-    for (let i = 0; i < soal.length; i++) {
+    soal.forEach((s, i) => {
         if (hasilDetail[i] === "SALAH") {
-            hasilHTML += `
+            html += `
                 <div class="hasil-card">
-                    <b>${soal[i].tanya}</b><br>
+                    <b>${s.tanya}</b><br>
                     ❌ ${jawabanUser[i]}
-                </div>
-            `;
+                </div>`;
         }
-    }
+    });
 
-    // 🎁 HADIAH BARU
     if (skor === soal.length) {
-        hasilHTML += `
-        <br><br>
-        🎁 <a href="https://link.dana.id/danakaget?c=ssswlh9kr&r=bywqFE&orderId=20260319101214505215010300166680870334424" target="_blank">
-        Ambil Hadiah
-        </a>`;
+        html += `<br><a href="https://link.dana.id/danakaget?c=ssswlh9kr&r=bywqFE&orderId=20260319101214505215010300166680870334424">🎁 Ambil Hadiah</a>`;
     }
 
-    document.getElementById("hasil").innerHTML = hasilHTML;
+    document.getElementById("hasil").innerHTML = html;
 }
 
 tampilSoal();

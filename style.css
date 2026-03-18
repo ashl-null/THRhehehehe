@@ -12,7 +12,6 @@ body {
 
 h1 {
     text-align: center;
-    font-size: 20px;
     color: white;
 }
 
@@ -23,7 +22,6 @@ h1 {
 
 /* PROGRESS */
 .progress-container {
-    width: 100%;
     background: #ddd;
     border-radius: 10px;
     margin: 10px 0;
@@ -34,7 +32,6 @@ h1 {
     width: 0%;
     background: #4caf50;
     border-radius: 10px;
-    transition: 0.3s;
 }
 
 /* CHAT */
@@ -42,7 +39,6 @@ h1 {
     background: white;
     border-radius: 20px;
     padding: 15px;
-    min-height: 250px;
 }
 
 /* BUBBLE */
@@ -50,12 +46,10 @@ h1 {
     padding: 14px;
     border-radius: 15px;
     margin-bottom: 10px;
-    font-size: 14px;
-    animation: fadeIn 0.4s;
     color: #333;
 }
 
-/* WARNA BERBEDA TIAP SOAL */
+/* WARNA */
 .warna1 { background: #ffe082; }
 .warna2 { background: #ffab91; }
 .warna3 { background: #b39ddb; }
@@ -66,23 +60,33 @@ h1 {
 .warna8 { background: #90caf9; }
 .warna9 { background: #ce93d8; }
 
-/* INPUT */
-#jawaban {
+/* OPSI BUTTON */
+.opsi-container {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    gap: 8px;
 }
 
-input, select {
+.opsi-btn {
+    padding: 12px;
+    border-radius: 12px;
+    border: none;
+    background: #f5f5f5;
+    cursor: pointer;
+}
+
+.opsi-btn.aktif {
+    background: #ff4081;
+    color: white;
+}
+
+/* INPUT */
+input {
     width: 90%;
     max-width: 300px;
     padding: 12px;
-    margin-top: 10px;
     border-radius: 12px;
     border: 2px solid #ddd;
-}
-
-input:focus, select:focus {
-    border-color: #ff4081;
 }
 
 /* BUTTON */
@@ -96,17 +100,10 @@ button {
     margin-top: 15px;
 }
 
-/* HASIL CARD */
+/* HASIL */
 .hasil-card {
     background: white;
     padding: 12px;
     border-radius: 15px;
-    margin-bottom: 12px;
-    text-align: left;
-}
-
-/* ANIMASI */
-@keyframes fadeIn {
-    from {opacity:0; transform:translateY(10px);}
-    to {opacity:1; transform:translateY(0);}
+    margin-bottom: 10px;
 }
