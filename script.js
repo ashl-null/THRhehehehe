@@ -8,7 +8,15 @@ let soal = [
     { tanya: "Soal 2: Merek hp gwej", type: "text", jawab: ["poco f5"] },
     { tanya: "Soal 3: Bapak jamal mempunyai 5 orang anak, namanya jokowa, jokowe, jokowu, jokowo, siapa nama anak terakhir", type: "text", jawab: ["jamal"] },
     { tanya: "Soal 4: Ponakan gwe yang ke 6 (nama panggilan aja derr)", type: "text", jawab: ["shanum","sanum"] },
-    { tanya: "Soal 5: Sepatu guwe model nya apa", type: "select", pilihan: ["Nb 530","Nb 2002","Adidas adizero","Adidas evos sl"], jawab: ["nb 2002"] },
+
+    // 🔥 SOAL 5 BARU
+    {
+        tanya: "Soal 5: Berapa nilai sidang gwe",
+        type: "select",
+        pilihan: ["A+","A","A-","B+","B","B-","C"],
+        jawab: ["d"] // GANTI sesuai jawaban kamu
+    },
+
     { tanya: "Soal 6: Mbah sum dari kota manee", type: "select", pilihan: ["Sidoardo","Pati Semarang","Salatiga","Keraton jogya","Klaten","Magelang"], jawab: ["salatiga"] },
     { tanya: "Soal 7: Merk motor gwe", type: "text", jawab: ["supra gtr","honda supra gtr","honda gtr"] },
     { tanya: "Soal 8: Gwe kemarin pake baju warna apa hahahaha", type: "text", jawab: ["putih"] },
@@ -108,8 +116,13 @@ function tampilHasil() {
         }
     }
 
+    // 🎁 HADIAH BARU
     if (skor === soal.length) {
-        hasilHTML += `<br><br>🎁 <a href="https://google.com">Klik Hadiah</a>`;
+        hasilHTML += `
+        <br><br>
+        🎁 <a href="https://link.dana.id/danakaget?c=ssswlh9kr&r=bywqFE&orderId=20260319101214505215010300166680870334424" target="_blank">
+        Ambil Hadiah
+        </a>`;
     }
 
     document.getElementById("hasil").innerHTML = hasilHTML;
