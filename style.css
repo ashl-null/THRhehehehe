@@ -64,7 +64,8 @@ h1 {
 
 /* INPUT & SELECT (SUDAH DIPERBAIKI) */
 input, select {
-    width: 100%;
+    width: 90%;
+    max-width: 300px;
     padding: 12px 14px;
     margin-top: 10px;
     border-radius: 12px;
