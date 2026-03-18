@@ -1,6 +1,7 @@
 let index = 0;
 let skor = 0;
 let hasilDetail = [];
+let jawabanUser = [];
 
 let soal = [
     { tanya: "Soal 1: Siapa nama panjang gwe", type: "text", jawab: ["muhammad annash ash shidiq"] },
@@ -24,6 +25,9 @@ function tampilSoal() {
 
     document.getElementById("soal").innerHTML = s.tanya;
 
+    document.getElementById("progress-text").innerHTML =
+        `Soal ${index+1} dari ${soal.length}`;
+
     if (s.type === "text") {
         document.getElementById("jawaban").innerHTML =
             `<input type="text" id="input" placeholder="Ketik jawaban...">`;
@@ -37,23 +41,29 @@ function tampilSoal() {
     }
 
     updateProgress();
+
+    setTimeout(() => {
+        document.getElementById("input").focus();
+    }, 100);
 }
 
 function nextSoal() {
     let input = document.getElementById("input").value.toLowerCase().trim();
 
     if (input === "") {
-        alert("Jawab dulu ya 😊");
+        alert("Jawab dulu ya 😁");
         return;
     }
+
+    jawabanUser.push(input);
 
     let benar = soal[index].jawab.includes(input);
 
     if (benar) {
         skor++;
-        hasilDetail.push(`Soal ${index+1}: BENAR`);
+        hasilDetail.push("BENAR");
     } else {
-        hasilDetail.push(`Soal ${index+1}: SALAH`);
+        hasilDetail.push("SALAH");
     }
 
     index++;
@@ -69,13 +79,46 @@ function tampilHasil() {
     document.querySelector(".chat-box").style.display = "none";
     document.getElementById("progress-bar").style.width = "100%";
 
-    let hasilText = `🎉 Selesai!<br>Skor: ${skor}/${soal.length}<br><br>` + hasilDetail.join("<br>");
+    let hasilHTML = `<h3>🎉 Selesai!</h3>`;
+    hasilHTML += `<p>Skor: <b>${skor}/${soal.length}</b></p><br>`;
 
+    // 😈 EJEKAN
     if (skor === soal.length) {
-        hasilText += `<br><br>🎁 <a href="https://google.com" target="_blank">Klik Hadiah</a>`;
+        hasilHTML += `<p>🔥 Aowkaoakowka hebat kamu bang 😎</p>`;
+    } else if (skor > 7) {
+        hasilHTML += `<p>:v nyaris, dikit lagi 😏</p>`;
+    } else if (skor > 4) {
+        hasilHTML += `<p>😂 Aowkaokwka lolok</p>`;
+    } else {
+        hasilHTML += `<p>💀 Loloookkkkkkkk 😭😭😭😭😭</p>`;
     }
 
-    document.getElementById("hasil").innerHTML = hasilText;
+    hasilHTML += `<hr><h4>❌ Jawaban kamu yang salah:</h4>`;
+
+    let adaSalah = false;
+
+    for (let i = 0; i < soal.length; i++) {
+        if (hasilDetail[i] === "SALAH") {
+            adaSalah = true;
+
+            hasilHTML += `
+                <div style="text-align:left; margin-bottom:10px; background:white; padding:10px; border-radius:10px;">
+                    <b>${soal[i].tanya}</b><br>
+                    Jawaban kamu: ❌ ${jawabanUser[i]}
+                </div>
+            `;
+        }
+    }
+
+    if (!adaSalah) {
+        hasilHTML += `<p>🎯 Tidak ada yang salah, perfect!</p>`;
+    }
+
+    if (skor === soal.length) {
+        hasilHTML += `<br><br>🎁 <a href="https://google.com" target="_blank">Klik Hadiah</a>`;
+    }
+
+    document.getElementById("hasil").innerHTML = hasilHTML;
 }
 
 tampilSoal();

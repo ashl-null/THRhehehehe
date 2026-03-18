@@ -4,18 +4,22 @@ body {
     background: linear-gradient(to bottom, #89f7fe, #66a6ff);
 }
 
-/* CONTAINER */
 .container {
     max-width: 400px;
     margin: auto;
     padding: 15px;
 }
 
-/* TITLE */
 h1 {
     text-align: center;
     font-size: 20px;
     color: white;
+}
+
+#progress-text {
+    text-align: center;
+    color: white;
+    font-size: 14px;
 }
 
 /* PROGRESS */
@@ -24,7 +28,6 @@ h1 {
     background: #ddd;
     border-radius: 10px;
     margin: 10px 0;
-    overflow: hidden;
 }
 
 #progress-bar {
@@ -32,61 +35,47 @@ h1 {
     width: 0%;
     background: #4caf50;
     border-radius: 10px;
-    transition: width 0.3s ease;
+    transition: 0.3s;
 }
 
-/* CHAT BOX */
+/* CHAT */
 .chat-box {
     background: white;
     border-radius: 20px;
     padding: 15px;
     min-height: 250px;
-    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
 }
 
-/* BUBBLE SOAL */
+/* BUBBLE */
 .bubble {
     background: #ffe082;
     padding: 14px;
     border-radius: 15px;
     margin-bottom: 10px;
     font-size: 14px;
-    line-height: 1.4;
-    animation: fadeIn 0.4s ease;
+    animation: fadeIn 0.4s;
 }
 
-/* WRAPPER INPUT */
+/* INPUT WRAPPER */
 #jawaban {
-    width: 100%;
     display: flex;
     justify-content: center;
 }
 
-/* INPUT & SELECT (SUDAH DIPERBAIKI) */
+/* INPUT */
 input, select {
     width: 90%;
     max-width: 300px;
-    padding: 12px 14px;
+    padding: 12px;
     margin-top: 10px;
     border-radius: 12px;
     border: 2px solid #ddd;
-    font-size: 14px;
     outline: none;
-    box-sizing: border-box;
-    transition: 0.2s;
-    animation: slideUp 0.3s ease;
+    animation: slideUp 0.3s;
 }
 
-/* FOCUS EFFECT */
 input:focus, select:focus {
     border-color: #ff4081;
-    box-shadow: 0 0 5px rgba(255, 64, 129, 0.3);
-}
-
-/* PLACEHOLDER */
-input::placeholder {
-    color: #aaa;
-    font-style: italic;
 }
 
 /* BUTTON */
@@ -98,56 +87,21 @@ button {
     border: none;
     border-radius: 15px;
     margin-top: 15px;
-    font-size: 16px;
-    transition: 0.2s;
-}
-
-/* BUTTON CLICK EFFECT */
-button:active {
-    transform: scale(0.97);
 }
 
 /* HASIL */
 h2 {
     text-align: center;
     color: white;
-    font-size: 16px;
 }
 
 /* ANIMASI */
 @keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    from {opacity:0; transform:translateY(10px);}
+    to {opacity:1; transform:translateY(0);}
 }
 
 @keyframes slideUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* MOBILE OPTIMIZATION */
-@media (max-width: 480px) {
-    h1 {
-        font-size: 18px;
-    }
-
-    .bubble {
-        font-size: 13px;
-    }
-
-    button {
-        font-size: 15px;
-    }
+    from {opacity:0; transform:translateY(20px);}
+    to {opacity:1; transform:translateY(0);}
 }
